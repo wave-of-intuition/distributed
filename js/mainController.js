@@ -67,21 +67,13 @@ angular
 
       $scope.toggleVote = function(key, votes) {
         var messagesRef = firebaseService.getMessagesRef($scope.userId);
-        if (!localStorage.getItem(key)) {
+        
           messagesRef.child(key).update({
             votes: votes + 1,
             date: firebaseService.getServerTimestamp()
           });
 
           localStorage.setItem(key, 1);
-        } else {
-          messagesRef.child(key).update({
-            votes: votes - 1,
-            date: firebaseService.getServerTimestamp()
-          });
-
-          localStorage.removeItem(key);
-        }
       };
 
       function redirectToBoard() {
